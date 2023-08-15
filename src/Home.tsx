@@ -1,5 +1,6 @@
+import axios from "axios";
 import dayjs from "dayjs";
-import { FC, useMemo } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 
 export type Article = {
   title: string;
@@ -63,9 +64,16 @@ const Item: FC<{ article: Article }> = ({ article }) => {
 };
 
 export const Home = () => {
+  const [fa, setFa] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/articles')
+      .then((res) => setFa(res.data));
+  }, []);
+
   return (
     <ul className="flex flex-col gap-12">
-      { articles.map((article) => <Item article={article} />) }
+      { fa.map((article) => <Item article={article} />) }
     </ul>
   );
 };
