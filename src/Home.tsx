@@ -64,16 +64,16 @@ const Item: FC<{ article: Article }> = ({ article }) => {
 };
 
 export const Home = () => {
-  const [fa, setFa] = useState([]);
+  // const [fa, setFa] = useState([]);
 
-  useEffect(() => {
-    axios.get('http://localhost:3000/articles')
-      .then((res) => setFa(res.data));
-  }, []);
+  // useEffect(() => {
+  //   axios.get('http://localhost:3000/articles')
+  //     .then((res) => setFa(res.data));
+  // }, []);
 
   return (
     <ul className="flex flex-col gap-12">
-      { fa.map((article) => <Item article={article} />) }
+      { articles.map((article) => <Item article={article} />) }
     </ul>
   );
 };
